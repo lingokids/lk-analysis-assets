@@ -1,0 +1,66 @@
+# Hygiene rules for lingokids/lk-analysis-assets (PUBLIC REPO)
+# ----------------------------------------------------------------
+# This repo is public on github.com/lingokids — any file committed here is
+# visible to anyone on the internet. These patterns block accidental commits
+# of files that contain customer identifiers, PII, or sensitive internal terms.
+#
+# To add a new pattern: file a Slack note in #sherlock-ai-hackathon-data
+# explaining what's being blocked. Don't silently broaden — every rule has a
+# reason that needs to be discoverable.
+
+# ── Customer / user identifiers ─────────────────────────────────────────
+*user_id_*
+*user-id-*
+*customer_*
+*customer-*
+*uid_*
+*uid-*
+
+# Email addresses embedded in filenames
+*@*lingokids.com*
+*@gmail.com*
+*@hotmail.com*
+*@yahoo.com*
+
+# Stripe / payment identifiers
+*sub_*.png
+*cus_*.png
+*ch_*.png
+*pi_*.png
+
+# Personal / dev exploration that shouldn't be public
+scratch/
+draft/
+private/
+*.private.*
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Large binaries (LFS or other storage instead)
+*.mp4
+*.mov
+*.avi
+*.iso
+*.tar.gz
+
+# Secrets — should never be committed anywhere, but extra-paranoid here
+*.env
+*.env.*
+secrets.json
+*token*.txt
+*credentials*
+
+# Notebook outputs (often contain stray data dumps)
+*.ipynb_checkpoints/
+
+# ── What IS allowed here ──────────────────────────────────────────────────
+# Aggregate chart PNGs (waterfall, WoW progression, dashboard exports)
+# Sized-driver tables with NO customer-level rows
+# Sim payloads (test fixtures with placeholder data)
+# README documentation
+# Investigation summary screenshots — only if pre-redacted
